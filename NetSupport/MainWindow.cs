@@ -120,6 +120,9 @@ namespace NetSupport
             LOGON32_PROVIDER_DEFAULT = 0,
         }
 
+        [DllImport("user32.dll")]
+        static extern bool SetForegroundWindow(IntPtr hWnd);
+
         #endregion
 
         #region Helpers
@@ -575,6 +578,9 @@ namespace NetSupport
             textBoxPassword.Text = config.Password;
 
             CheckEnvironment();
+
+            Process myself = Process.GetCurrentProcess();
+            SetForegroundWindow(myself.MainWindowHandle);
         }
 
         private void buttonSwitchOn_Click(object sender, EventArgs e)

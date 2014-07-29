@@ -151,9 +151,6 @@
   <data name="label2.Text" xml:space="preserve">
     <value>Komponente</value>
   </data>
-  <data name="groupBoxSshAccount.Text" xml:space="preserve">
-    <value>Support Server Konto</value>
-  </data>
   <data name="labelConnectionStat.Text" xml:space="preserve">
     <value>Warte...</value>
   </data>
@@ -172,8 +169,8 @@
   <data name="label3.Text" xml:space="preserve">
     <value>Benutzer:</value>
   </data>
-  <data name="groupBoxWinAccount.Text" xml:space="preserve">
-    <value>Windows Benutzerkonto</value>
+  <data name="groupBoxSshAccount.Text" xml:space="preserve">
+    <value>Support Server Konto</value>
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 13</value>
@@ -189,6 +186,9 @@
   </data>
   <data name="buttonSenWinPwd.Text" xml:space="preserve">
     <value>Passwort setzen</value>
+  </data>
+  <data name="groupBoxWinAccount.Text" xml:space="preserve">
+    <value>Windows Benutzerkonto</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

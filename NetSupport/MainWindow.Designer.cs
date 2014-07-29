@@ -69,10 +69,10 @@
             // 
             // groupBox1
             // 
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.labelEnvStatus);
             this.groupBox1.Controls.Add(this.buttonSwitchOn);
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
@@ -167,6 +167,7 @@
             // 
             // groupBoxSshAccount
             // 
+            resources.ApplyResources(this.groupBoxSshAccount, "groupBoxSshAccount");
             this.groupBoxSshAccount.Controls.Add(this.labelConnectionStat);
             this.groupBoxSshAccount.Controls.Add(this.label12);
             this.groupBoxSshAccount.Controls.Add(this.checkBoxConnect);
@@ -174,14 +175,13 @@
             this.groupBoxSshAccount.Controls.Add(this.label3);
             this.groupBoxSshAccount.Controls.Add(this.textBoxPassword);
             this.groupBoxSshAccount.Controls.Add(this.textBoxUsername);
-            resources.ApplyResources(this.groupBoxSshAccount, "groupBoxSshAccount");
             this.groupBoxSshAccount.Name = "groupBoxSshAccount";
             this.groupBoxSshAccount.TabStop = false;
             // 
             // labelConnectionStat
             // 
-            this.labelConnectionStat.ForeColor = System.Drawing.Color.Blue;
             resources.ApplyResources(this.labelConnectionStat, "labelConnectionStat");
+            this.labelConnectionStat.ForeColor = System.Drawing.Color.Blue;
             this.labelConnectionStat.Name = "labelConnectionStat";
             // 
             // label12
@@ -224,12 +224,12 @@
             // 
             // groupBoxWinAccount
             // 
+            resources.ApplyResources(this.groupBoxWinAccount, "groupBoxWinAccount");
             this.groupBoxWinAccount.Controls.Add(this.labelWinUserName);
             this.groupBoxWinAccount.Controls.Add(this.label10);
             this.groupBoxWinAccount.Controls.Add(this.label6);
             this.groupBoxWinAccount.Controls.Add(this.textBoxWinPasswd);
             this.groupBoxWinAccount.Controls.Add(this.buttonSenWinPwd);
-            resources.ApplyResources(this.groupBoxWinAccount, "groupBoxWinAccount");
             this.groupBoxWinAccount.Name = "groupBoxWinAccount";
             this.groupBoxWinAccount.TabStop = false;
             // 
