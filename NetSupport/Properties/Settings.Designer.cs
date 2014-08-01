@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NetSupport.Properties {
+namespace Centridost.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

@@ -8,8 +8,8 @@
     <ProjectGuid>{35B33811-5C96-4018-8711-3D0BD5B515E4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NetSupport</RootNamespace>
-    <AssemblyName>NetSupportClient</AssemblyName>
+    <RootNamespace>Centridost</RootNamespace>
+    <AssemblyName>Centridost</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

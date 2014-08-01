@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSupportClient", "NetSupport\NetSupportClient.csproj", "{35B33811-5C96-4018-8711-3D0BD5B515E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Centridost", "Centridost\Centridost.csproj", "{35B33811-5C96-4018-8711-3D0BD5B515E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

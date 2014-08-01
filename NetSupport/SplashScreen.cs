@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Windows.Forms;
 
-namespace NetSupport
+namespace Centridost
 {
     public partial class SplashScreen : Form
     {

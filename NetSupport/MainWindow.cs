@@ -13,7 +13,7 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 using Renci.SshNet;
 
-namespace NetSupport
+namespace Centridost
 {
     public partial class MainWindow : Form
     {

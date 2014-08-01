@@ -1,4 +1,4 @@
-﻿namespace NetSupport
+﻿namespace Centridost
 {
     partial class MainWindow
     {

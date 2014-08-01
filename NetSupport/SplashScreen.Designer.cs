@@ -1,4 +1,4 @@
-﻿namespace NetSupport
+﻿namespace Centridost
 {
     partial class SplashScreen
     {
@@ -37,7 +37,7 @@
             // pictureBox1
             // 
             resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.Image = global::NetSupport.Properties.Resources.loadinfo_net;
+            this.pictureBox1.Image = global::Centridost.Properties.Resources.loadinfo_net;
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
             // 

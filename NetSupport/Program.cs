@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace NetSupport
+namespace Centridost
 {
     static class Program
     {

@@ -1,4 +1,4 @@
-﻿namespace NetSupport
+﻿namespace Centridost
 {
     partial class ServerAddress
     {
@@ -94,7 +94,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::NetSupport.Properties.Resources._1310628229_dedicated_server;
+            this.pictureBox1.Image = global::Centridost.Properties.Resources._1310628229_dedicated_server;
             resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
