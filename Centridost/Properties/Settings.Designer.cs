@@ -37,7 +37,7 @@ namespace Centridost.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("222")]
+        [global::System.Configuration.DefaultSettingValueAttribute("22")]
         public int SupportPort {
             get {
                 return ((int)(this["SupportPort"]));

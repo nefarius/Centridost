@@ -6,7 +6,7 @@
       <Value Profile="(Default)">localhost</Value>
     </Setting>
     <Setting Name="SupportPort" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">222</Value>
+      <Value Profile="(Default)">22</Value>
     </Setting>
     <Setting Name="FwdRemotePort" Type="System.UInt32" Scope="User">
       <Value Profile="(Default)">8888</Value>

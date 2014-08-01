@@ -168,17 +168,16 @@ namespace Centridost
         /// <returns>Returns true on success, else false.</returns>
         private bool BuildTunnel()
         {
-            if (client == null)
+            try
             {
                 client = new SshClient(config.SupportHost,
                     config.SupportPort,
                     textBoxUsername.Text,
                     textBoxPassword.Text);
+                client.ErrorOccurred += new EventHandler<Renci.SshNet.Common.ExceptionEventArgs>(client_ErrorOccurred);
                 client.KeepAliveInterval = new System.TimeSpan(0, 0, 10);
-            }
 
-            try
-            {
+
                 client.Connect();
                 client.SendKeepAlive();
                 var port = new ForwardedPortRemote(IPAddress.Loopback,
@@ -190,14 +189,26 @@ namespace Centridost
             }
             catch (System.Exception ex)
             {
-                client.Disconnect();
+                Log.WriteLine("BuildTunnel() general exception: {0}", ex.Message);
+
+                if (client.IsConnected)
+                {
+                    client.Disconnect();
+                }
+
                 MessageBox.Show(GetCaption("serverLoginError"), GetCaption("loginFailed"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                MessageBox.Show(ex.Message);
                 return false;
             }
 
             return sessionActive = true;
+        }
+
+        void client_ErrorOccurred(object sender, Renci.SshNet.Common.ExceptionEventArgs e)
+        {
+            Log.WriteLine("SSh Session error: {0}", e.Exception.Message);
+            MessageBox.Show(GetCaption("serverLoginError"), GetCaption("loginFailed"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         /// <summary>
@@ -206,8 +217,12 @@ namespace Centridost
         private void BreakTunnel()
         {
             if (client != null)
+            {
                 if (client.IsConnected)
                     client.Disconnect();
+                client.Dispose();
+                client = null;
+            }
 
             sessionActive = false;
         }
@@ -287,7 +302,7 @@ namespace Centridost
 
                         return success;
                     }
-                    catch (SocketException) { return success; }
+                    catch (SocketException) { return success = false; }
                     finally { socket.Close(); }
                 }
             }
@@ -729,13 +744,13 @@ namespace Centridost
 
         void port_RequestReceived(object sender, Renci.SshNet.Common.PortForwardEventArgs e)
         {
-             // TODO: log this information?
+            Log.WriteLine("Incoming forwarded connection from {0}:{1}", 
+                e.OriginatorHost, e.OriginatorPort);
         }
 
         void port_Exception(object sender, Renci.SshNet.Common.ExceptionEventArgs e)
         {
-            // TODO: add proper error handling
-            MessageBox.Show(string.Format("{0}: {1}", sender.GetType(), e.Exception.Message));
+            Log.WriteLine("Error in {0}: {1}", sender.GetType(), e.Exception.Message);
         }
 
         #endregion
