@@ -31,7 +31,7 @@ namespace Centridost
 
             InitializeComponent();
 
-            langRes = new ResourceManager("NetSupport.Language", typeof(MainWindow).Assembly);
+            langRes = new ResourceManager("Centridost.Language", typeof(MainWindow).Assembly);
             srvAddrDiag = new ServerAddress();
         }
 
