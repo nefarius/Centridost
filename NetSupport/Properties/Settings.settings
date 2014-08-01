@@ -8,13 +8,10 @@
     <Setting Name="SupportPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">222</Value>
     </Setting>
-    <Setting Name="FwdRemotePort" Type="System.Int32" Scope="User">
+    <Setting Name="FwdRemotePort" Type="System.UInt32" Scope="User">
       <Value Profile="(Default)">8888</Value>
     </Setting>
-    <Setting Name="FwdLocalHost" Type="System.String" Scope="User">
-      <Value Profile="(Default)">localhost</Value>
-    </Setting>
-    <Setting Name="FwdLocalPort" Type="System.Int32" Scope="User">
+    <Setting Name="FwdLocalPort" Type="System.UInt32" Scope="User">
       <Value Profile="(Default)">3389</Value>
     </Setting>
     <Setting Name="Timeout" Type="System.Int32" Scope="User">

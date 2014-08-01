@@ -11,8 +11,7 @@ using System.ServiceProcess;
 using System.Threading;
 using System.Windows.Forms;
 using Microsoft.Win32;
-using Tamir.SharpSsh.java.util;
-using Tamir.SharpSsh.jsch;
+using Renci.SshNet;
 
 namespace NetSupport
 {
@@ -20,7 +19,7 @@ namespace NetSupport
     {
         private const string rdpRegKey = @"System\CurrentControlSet\Control\Terminal Server";
 
-        private Session sshSession = null;
+        private SshClient client = null;
         private Properties.Settings config = Properties.Settings.Default;
         private bool sessionActive = false;
         ResourceManager langRes = null;
@@ -169,32 +168,36 @@ namespace NetSupport
         /// <returns>Returns true on success, else false.</returns>
         private bool BuildTunnel()
         {
-            JSch jsch = new JSch();
+            if (client == null)
+            {
+                client = new SshClient(config.SupportHost,
+                    config.SupportPort,
+                    textBoxUsername.Text,
+                    textBoxPassword.Text);
+                client.KeepAliveInterval = new System.TimeSpan(0, 0, 10);
+            }
 
             try
             {
-                // Set authentication info
-                sshSession = jsch.getSession(textBoxUsername.Text, config.SupportHost, config.SupportPort);
-                sshSession.setPassword(textBoxPassword.Text);
-                // Build configuration and disable host key check
-                Hashtable configs = new Hashtable();
-                configs.put("StrictHostKeyChecking", "no");
-                sshSession.setConfig(configs);
-                // Try to connect
-                sshSession.connect();
-                // Create TCP tunnel
-                sshSession.setPortForwardingR(config.FwdRemotePort, config.FwdLocalHost, config.FwdLocalPort);
-
-                sessionActive = true;
-                return true;
+                client.Connect();
+                client.SendKeepAlive();
+                var port = new ForwardedPortRemote(IPAddress.Loopback,
+                    config.FwdRemotePort, IPAddress.Loopback, config.FwdLocalPort);
+                port.Exception += new EventHandler<Renci.SshNet.Common.ExceptionEventArgs>(port_Exception);
+                port.RequestReceived += new EventHandler<Renci.SshNet.Common.PortForwardEventArgs>(port_RequestReceived);
+                client.AddForwardedPort(port);
+                port.Start();
             }
-            catch (JSchException)
+            catch (System.Exception ex)
             {
+                client.Disconnect();
                 MessageBox.Show(GetCaption("serverLoginError"), GetCaption("loginFailed"),
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message);
+                return false;
             }
 
-            return false;
+            return sessionActive = true;
         }
 
         /// <summary>
@@ -202,9 +205,9 @@ namespace NetSupport
         /// </summary>
         private void BreakTunnel()
         {
-            if (sshSession != null)
-                if (sshSession.isConnected())
-                    sshSession.disconnect();
+            if (client != null)
+                if (client.IsConnected)
+                    client.Disconnect();
 
             sessionActive = false;
         }
@@ -633,7 +636,6 @@ namespace NetSupport
                             Color.Green);
                     }
                 }
-
             }
 
             if (!(sender as CheckBox).Checked && sessionActive)
@@ -723,6 +725,17 @@ namespace NetSupport
         private void MainWindow_Shown(object sender, EventArgs e)
         {
             SplashScreen.CloseForm();
+        }
+
+        void port_RequestReceived(object sender, Renci.SshNet.Common.PortForwardEventArgs e)
+        {
+             // TODO: log this information?
+        }
+
+        void port_Exception(object sender, Renci.SshNet.Common.ExceptionEventArgs e)
+        {
+            // TODO: add proper error handling
+            MessageBox.Show(string.Format("{0}: {1}", sender.GetType(), e.Exception.Message));
         }
 
         #endregion
